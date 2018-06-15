@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="title">Search Open Positions</h2>
+  </div>
+</div>
+<div class="row form">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="filterLocation">Location</label>
+      <select class="form-control" id="filterLocation" [(ngModel)]="campus">
+        <option *ngFor="let loc of locs" [ngValue]="loc">{{loc}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="filterJobType">Job Type</label>
+      <select class="form-control" id="filterJobType" [(ngModel)]="jobType">
+          <option *ngFor="let jt of jts" value="{{jt}}">{{jt}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="filterKeywords">Keywords</label>
+      <input type="text" class="form-control" id="filterKeywords" [(ngModel)]="keywords">
+    </div>
+  </div>
+</div>
+{{campus}} | 
+{{jobType}} | 
+{{keywords}}
+<hr />
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let p of positions | filterBy: ['employee_type']: jobType | filterBy: ['location']: campus | filterBy: ['unit_name','posting_number','posting_summary']: keywords; let i = index">
+    <div class="card mb-3" style="width: 30rem;">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{p.name | shorten: 50}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted font-italic text-center">{{p.unit_name}}</h6>
+        <hr />
+        <div><strong>Location:</strong> {{p.location | ucwords}}</div>
+        <div><strong>Type:</strong> {{p.employee_type | ucwords}}</div>
+        <div><strong>Open:</strong> {{p.open_date_display}}</div>
+        <div><strong>Close:</strong> {{p.close_date_display}}</div>
+        
+      </div>
+      <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+        <button type="button" class="btn btn-primary btn-md mb-2">Read more</button>
+      </div>
+    </div>
+  </div>
+</div>

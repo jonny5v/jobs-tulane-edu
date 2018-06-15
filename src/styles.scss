@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+
+$theme-colors: (
+    "tugreen": #336666,
+    "tublue": #71C5E8
+);
+
+.bg-tugreen {
+    background-color: #336666;
+}
+
+.text-tublue {
+    color: #71C5E8;
+}
+
+body {
+    padding-top: 5rem;
+}
+.starter-template {
+    padding: .5rem 1rem;
+}
+.title {
+    text-align: center;
+}
