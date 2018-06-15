@@ -8,7 +8,7 @@
     <div class="form-group">
       <label for="filterLocation">Location</label>
       <select class="form-control" id="filterLocation" [(ngModel)]="campus">
-        <option *ngFor="let loc of locs" [ngValue]="loc">{{loc}}</option>
+        <option *ngFor="let p of positions | unique: 'location' | orderBy: 'location'" [ngValue]="p.location">{{p.location}}</option>
       </select>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div class="form-group">
       <label for="filterJobType">Job Type</label>
       <select class="form-control" id="filterJobType" [(ngModel)]="jobType">
-          <option *ngFor="let jt of jts" value="{{jt}}">{{jt}}</option>
+          <option *ngFor="let p of positions | unique: 'employee_type' | orderBy: 'employee_type'" value="{{p.employee_type}}">{{p.employee_type}}</option>
       </select>
     </div>
   </div>
@@ -27,9 +27,7 @@
     </div>
   </div>
 </div>
-{{campus}} | 
-{{jobType}} | 
-{{keywords}}
+
 <hr />
 
 <div class="row">
